@@ -5,13 +5,13 @@
 
 <% @user.posts.each do |post|%>
     <article>
-        <%= post.user.email%>
-        <%= post.body%>
-        Created at: <%= post.created_at%>
+        <%= post.user.email%><br>
+        <%= post.body%><br>
+        Created at: <%= post.created_at%><br>
             <%unless post.created_at == post.updated_at%>
                 Edited at: <%= post.updated_at%>
             <% end %>
-
+<br><br>
     </article>
 <% end %>
 
