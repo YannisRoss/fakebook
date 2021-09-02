@@ -13,6 +13,16 @@
   <body>
         <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
+       <nav>
+       <% if current_user %>
+          <%= link_to 'Sign out', destroy_user_session_url, method: :destroy%>
+       <% else %>
+          <%= link_to 'Sign up', new_user_registration_url %>
+          <%= link_to 'Sign in', new_user_session_url %>
+
+
+       <% end %>
+       </nav>
     <%= yield %>
   </body>
 </html>
