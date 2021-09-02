@@ -1,3 +1,8 @@
-<% redirect_to "/users/#{current_user.id}" if current_user%>
 
-<h1>index agagagag</h1>
+<h1>Welcome to FakeBook!</h1>
+
+<h2>Featuring over <%= @users.size - 1 %> users worldwide! </h2>
+
+          <%= link_to 'Sign up', new_user_registration_url %>
+          <br> <br>
+          <%= link_to 'Sign in', new_user_session_url %>

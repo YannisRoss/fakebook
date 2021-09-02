@@ -10,5 +10,8 @@ class UsersController < ApplicationController
 
     def index
         redirect_to "/users/#{current_user.id}" if current_user
+
+
+        @users = User.all
     end
 end
