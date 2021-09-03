@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
         has_many :posts
         has_many :comments, through: :posts
-        has_and_belongs_to_many :users  #friending 
+        has_many :friendships, dependent: :destroy
+        has_many :friends, through: :friendships
 
 end
