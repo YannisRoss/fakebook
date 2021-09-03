@@ -1,8 +1,22 @@
+<% unless current_user%>
+    <h1>Welcome to FakeBook!</h1>
 
-<h1>Welcome to FakeBook!</h1>
+    <h2>Featuring over <%= @users.size - 1 %> users worldwide! </h2>
 
-<h2>Featuring over <%= @users.size - 1 %> users worldwide! </h2>
+            <%= link_to 'Sign up', new_user_registration_url %>
+            <br> <br>
+            <%= link_to 'Sign in', new_user_session_url %>
 
-          <%= link_to 'Sign up', new_user_registration_url %>
-          <br> <br>
-          <%= link_to 'Sign in', new_user_session_url %>
+<% else %>
+
+    <h1>Hey <%=current_user.name%>! Find new friends on FakeBook! </h1>
+        <h2>Featuring over <%= @users.size - 1 %> users worldwide! </h2>
+
+    <% @users.each do |user|%>
+        <% unless user.id == current_user.id%>
+            <%= user.name%>
+            <%= link_to "Become friends!", "#"%> <br> <br>
+                
+        <%end%>
+    <%end%>
+<%end%>
