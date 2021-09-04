@@ -39,3 +39,9 @@
         <%= friend.name%>
         </p>
         <%end%>
+         <% @user.inverse_friends.each do |friend|%>
+        <article>
+        <p>
+        <%= friend.name%>
+        </p>
+        <%end%>
