@@ -1,5 +1,11 @@
 <%= current_user.email%>
-
+<% if @user.friend_requests.any?%>
+    <% @user.friend_requests.each do |request| %>
+        <%  if request.target.id == @user.id %>
+            accept request from <%= request.requester.name %>
+        <% end %>
+    <%end%>
+<%end%>
 
 <h1>Your homepage, <%= @user.name%> </h1>
 
