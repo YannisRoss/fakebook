@@ -2,7 +2,13 @@
 <% if @user.friend_requests.any?%>
     <% @user.friend_requests.each do |request| %>
         <%  if request.target.id == @user.id %>
-            accept request from <%= request.requester.name %>
+                <%= form_with url: "friendships#create", method: :post do |form| %>
+
+                    <%= form.hidden_field :user_id, value: request.requester.id %>
+                    <%= form.hidden_field :friend_id, value: current_user.id %>
+
+                    <%= form.submit "accept request from #{request.requester.name}" %>
+                <% end %>
         <% end %>
     <%end%>
 <%end%>

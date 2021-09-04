@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
 
-
-
+  resources :friend_requests, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy]
   
     root "users#index"
 end
