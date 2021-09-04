@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
     def index
 
-
+        @friend_request = FriendRequest.new
         @users = User.all
     end
 end
