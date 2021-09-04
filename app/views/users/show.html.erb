@@ -2,7 +2,7 @@
 <% if @user.friend_requests.any?%>
     <% @user.friend_requests.each do |request| %>
         <%  if request.target.id == @user.id %>
-                <%= form_with url: "friendships#create", method: :post do |form| %>
+                <%= form_with model: @friendship, method: :post do |form| %>
 
                     <%= form.hidden_field :user_id, value: request.requester.id %>
                     <%= form.hidden_field :friend_id, value: current_user.id %>

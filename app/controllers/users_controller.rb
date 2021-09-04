@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
     def show
+        @friendship = Friendship.new
+
         if current_user
             @user=current_user
         else
@@ -10,7 +12,7 @@ class UsersController < ApplicationController
 
     def index
 
-        @friend_request = FriendRequest.new
+        @friend_request = FriendRequest.new 
         @users = User.all
     end
 end
