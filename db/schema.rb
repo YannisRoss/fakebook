@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_04_091606) do
+ActiveRecord::Schema.define(version: 2021_09_04_093809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 2021_09_04_091606) do
   create_table "friend_requests", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "requester_id"
+    t.integer "target_id"
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -89,5 +91,7 @@ ActiveRecord::Schema.define(version: 2021_09_04_091606) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "friend_requests", "users", column: "requester_id"
+  add_foreign_key "friend_requests", "users", column: "target_id"
   add_foreign_key "posts", "users"
 end
