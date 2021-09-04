@@ -15,8 +15,16 @@
     <% @users.each do |user|%>
         <% unless user.id == current_user.id%>
             <%= user.name%>
-            <%= link_to "Become friends!", "#"%> <br> <br>
+             <%= form_with url: "friend_requests#create", method: :post do |form| %>
+
+                    <%= form.hidden_field :requester_id, value: current_user.id %>
+                    <%= form.hidden_field :target_id, value: user.id %>
+
+                    <%= form.submit "Become friends!" %>
+                <% end %>
                 
         <%end%>
     <%end%>
 <%end%>
+
+<h2>Your friends! </h2>
