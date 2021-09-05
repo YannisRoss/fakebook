@@ -19,7 +19,11 @@
     <%= render "posts/form"%>
     <% @posts_to_show.each do |post|%>
         <% unless post.user == current_user %>
-            <%= "At #{post.created_at}, #{post.user.name} posted:" %> <br>
+            <% if post.updated_at == post.created_at %>
+                <%= "At #{post.updated_at}, #{post.user.name} posted:" %> <br>
+            <% else%>
+                <%="At #{post.updated_at}, #{post.user.name} edited their post:" %> <br>
+            <%end%>
         <%else%>
             posted by <%= post.user.name%> <%= post.created_at%><br>
         <%end%>

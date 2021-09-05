@@ -28,7 +28,7 @@ class UsersController < ApplicationController
                 end
             end
 
-
+          @posts_to_show = @posts_to_show.sort_by {|post| post.updated_at}.reverse
         end
 
         @friend_request = FriendRequest.new 
