@@ -8,18 +8,21 @@
             <%= link_to 'Sign in', new_user_session_url %>
 
 <% else %>
+<h6>Featuring over <%= @users.size - 1 %> users worldwide! </h6>
 <% if current_user.friend_requests.any?%>
     You have incoming friend requests.
     <%=link_to 'See them now!', "/users/#{current_user.id}"%>
 <%end%>
 
     <h1>Hey <%=current_user.name%>! Welcome to your news feed! </h1>
-        <h2>Featuring over <%= @users.size - 1 %> users worldwide! </h2>
-
     <% @posts_to_show.each do |post|%>
-        <%= post.user.name%> <%= post.created_at%><br>
-        <%= post.body%> <br>
-        <%= link_to 'Comments', "/posts/#{post.id}" %>
+        <% unless post.user == current_user %>
+            <%= "At #{post.created_at}, #{post.user.name} posted:" %> <br>
+        <%else%>
+            posted by <%= post.user.name%> <%= post.created_at%><br>
+        <%end%>
+            <%= post.body%> <br>
+            <%= link_to 'Comments', "/posts/#{post.id}" %><br><br>
     <%end%>
 
 

@@ -2,23 +2,27 @@ class UsersController < ApplicationController
 
     def show
         @friendship = Friendship.new
-
-        if current_user
-            @user=current_user
-        else
-            redirect_to new_user_registration_url
-        end
+        @user=current_user
+        redirect_unregistered
     end
 
     def index
+        redirect_unregistered
+
         @user=current_user
-        @posts_to_show = @user.posts
-        @user.friends.each do |friend|
-            friend.posts.each do |post|
+        unless @user.nil?
+            @posts_to_show = []
+            
+            @user.posts.each do |post|
                 @posts_to_show.push(post)
             end
+            
+            @user.friends.each do |friend|
+                friend.posts.each do |post|
+                    @posts_to_show.push(post)
+                end
+            end
         end
-
 
         @friend_request = FriendRequest.new 
         @users = User.all
@@ -29,5 +33,10 @@ class UsersController < ApplicationController
 
     end
 
-
+    def redirect_unregistered
+        unless current_user
+            
+            redirect_to new_user_registration_url
+        end
+    end
 end
