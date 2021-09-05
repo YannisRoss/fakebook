@@ -3,6 +3,16 @@ class FriendshipsController < ApplicationController
     def create
         @friendship = Friendship.new(friendship_params)
 
+        @friend_request_to_delete = FriendRequest.find_by(requester_id: @friendship.user_id, target_id: @friendship.friend_id)
+        
+        unless @friend_request_to_delete.nil?
+            @friend_request_to_delete.destroy
+        end
+        @friend_request_to_delete = FriendRequest.find_by(requester_id: @friendship.friend_id, target_id: @friendship.user_id)
+
+        unless @friend_request_to_delete.nil?
+            @friend_request_to_delete.destroy
+        end
         respond_to do |format|
             if @friendship.save
               format.html { redirect_to root_url, notice: "Friend request was successfully accepted!" }
