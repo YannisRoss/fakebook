@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     def index
         redirect_unregistered
-
+        @post = Post.new
         @user=current_user
         unless @user.nil?
             @posts_to_show = []
@@ -16,12 +16,19 @@ class UsersController < ApplicationController
             @user.posts.each do |post|
                 @posts_to_show.push(post)
             end
-            
+
             @user.friends.each do |friend|
                 friend.posts.each do |post|
                     @posts_to_show.push(post)
                 end
             end
+            @user.inverse_friends.each do |friend|
+                friend.posts.each do |post|
+                    @posts_to_show.push(post)
+                end
+            end
+
+
         end
 
         @friend_request = FriendRequest.new 
