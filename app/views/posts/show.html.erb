@@ -1,14 +1,53 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Body:</strong>
+  <strong>Posted by:</strong>
+  <%= @post.user.name %>
+</p>
+<p>
   <%= @post.body %>
 </p>
+<% if @post.comments.any?%>
+  <p>
+  Comments
+    <br> <%@post.comments.each do |comment|%>
+      <%=comment.user.name%>
+      <%=comment.body%>
+      <%=comment.created_at%>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
+    <%end%>
+<%end%>
 
+<%= form_with(model: @comment) do |form| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% @comment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.text_area :body , placeholder: 'Leave a comment...'%>
+  </div>
+
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+<%= form.hidden_field :post_id, value: @post.id %>
+
+  <div class="actions">
+    <%= form.submit "Submit comment"%>
+  </div>
+<% end %>
+
+
+
+
+<%if @post.user_id == current_user.id%>
 <%= link_to 'Edit', edit_post_path(@post) %> |
+<%end%>
 <%= link_to 'Back', posts_path %>
