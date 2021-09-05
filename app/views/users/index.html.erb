@@ -8,22 +8,30 @@
             <%= link_to 'Sign in', new_user_session_url %>
 
 <% else %>
+<% if current_user.friend_requests.any?%>
+    You have incoming friend requests.
+    <%=link_to 'See them now!', "/users/#{current_user.id}"%>
+<%end%>
 
     <h1>Hey <%=current_user.name%>! Find new friends on FakeBook! </h1>
         <h2>Featuring over <%= @users.size - 1 %> users worldwide! </h2>
-
     <% @users.each do |user|%>
+    <div>
         <% unless user.id == current_user.id%>
-            <%= user.name%>
-             <%= form_with url: "friend_requests#create", model: @friend_request, method: :post do |form| %>
+            <%= user.name%> 
+                <% unless current_user.friends.include?(user) || current_user.inverse_friends.include?(user)%>
+                    <%= form_with url: "friend_requests#create", model: @friend_request, method: :post do |form| %>
 
-                    <%= form.hidden_field :requester_id, value: current_user.id %>
-                    <%= form.hidden_field :target_id, value: user.id %>
+                            <%= form.hidden_field :requester_id, value: current_user.id %>
+                            <%= form.hidden_field :target_id, value: user.id %>
 
-                    <%= form.submit "Become friends!" %>
-                <% end %>
-                
+                            <%= form.submit "Become friends!" %>
+                        <% end %> 
+                <% end%>
         <%end%>
+        </div>
+        <br> <br>
+
     <%end%>
 
 <%end%>

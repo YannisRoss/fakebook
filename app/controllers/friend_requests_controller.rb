@@ -1,5 +1,5 @@
 class FriendRequestsController < ApplicationController
-
+ 
 
     def create
         @friend_request = FriendRequest.new(friend_request_params)
@@ -13,6 +13,10 @@ class FriendRequestsController < ApplicationController
           
         end
 
+
+    end
+
+    def destroy
 
     end
 
