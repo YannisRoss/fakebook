@@ -17,6 +17,7 @@
        <% if current_user %>
           <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
           <%= link_to 'Your profile', "/users/#{current_user.id}" %>
+          <%= link_to 'News Feed', root_url %>
 
 
        <% end %>

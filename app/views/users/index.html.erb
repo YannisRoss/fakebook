@@ -13,26 +13,38 @@
     <%=link_to 'See them now!', "/users/#{current_user.id}"%>
 <%end%>
 
-    <h1>Hey <%=current_user.name%>! Find new friends on FakeBook! </h1>
+    <h1>Hey <%=current_user.name%>! Welcome to your news feed! </h1>
         <h2>Featuring over <%= @users.size - 1 %> users worldwide! </h2>
-    <% @users.each do |user|%>
-    <div>
-        <% unless user.id == current_user.id%>
-            <%= user.name%> 
+
+    <% @posts_to_show.each do |post|%>
+        <%= post.user.name%> <%= post.created_at%><br>
+        <%= post.body%> <br>
+        <%= link_to 'Comments', "/posts/#{post.id}" %>
+    <%end%>
+
+
+        <h3>People you may know:</h3>
+            <% @users.each do |user|%>
+            <div>
                 <% unless current_user.friends.include?(user) || current_user.inverse_friends.include?(user)%>
-                    <%= form_with url: "friend_requests#create", model: @friend_request, method: :post do |form| %>
 
-                            <%= form.hidden_field :requester_id, value: current_user.id %>
-                            <%= form.hidden_field :target_id, value: user.id %>
+                        <% unless user.id == current_user.id%>
+                    <%= user.name%> 
+                            <%= form_with url: "friend_requests#create", model: @friend_request, method: :post do |form| %>
 
-                            <%= form.submit "Become friends!" %>
-                        <% end %> 
-                <% end%>
-        <%end%>
+                                    <%= form.hidden_field :requester_id, value: current_user.id %>
+                                    <%= form.hidden_field :target_id, value: user.id %>
+
+                                    <%= form.submit "Become friends!" %>
+                                <% end %> 
+                        <% end%>
+                <%end%>
         </div>
         <br> <br>
 
     <%end%>
 
 <%end%>
+
+
 
