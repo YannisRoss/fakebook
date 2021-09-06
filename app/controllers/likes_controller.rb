@@ -8,7 +8,7 @@ class LikesController < ApplicationController
         if @like.save
           format.html { redirect_to root_url, notice: "like was successfully created." }
         else
-          format.html {  redirect_back fallback_location: root_url, notice: "like failed. Error: #{@like.errors.full_messages}" }
+          format.html {  redirect_back fallback_location: root_url, notice: "You can't like the same post twice!" }
           
 
         end
