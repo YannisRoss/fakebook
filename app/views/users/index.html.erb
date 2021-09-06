@@ -18,6 +18,9 @@
 
     <%= render "posts/form"%>
     <% @posts_to_show.each do |post|%>
+        <% if post.user.avatar.attached?%>
+            <img src="<%=(url_for(post.user.avatar))%>" width="20" height="20">
+        <% end %>
             <% if post.updated_at == post.created_at %>
                 <%= "Posted by #{post.user.name} at #{post.created_at}: "%><br>
             <% else%>
