@@ -13,4 +13,6 @@ class User < ApplicationRecord
         has_many :friend_requests, foreign_key: 'requester_id', dependent: :destroy
         has_many :friend_requests, foreign_key: 'target_id', dependent: :destroy
 
+
+        has_one_attached :avatar
 end
