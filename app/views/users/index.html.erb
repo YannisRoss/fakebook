@@ -45,15 +45,23 @@
                 <% unless current_user.friends.include?(user) || current_user.inverse_friends.include?(user)%>
 
                         <% unless user.id == current_user.id%>
-                        
-                            <%= user.name%> 
-                            <%= form_with url: "friend_requests#create", model: @friend_request, method: :post do |form| %>
+                                <% already_requested = false%>
+                                    <% user.friend_requests.each do |request|%>
+                                        <% if request.requester_id == current_user.id%>
+                                        <%already_requested = true%>
+                                        <% end%>
+                                    <% end %>
 
-                                    <%= form.hidden_field :requester_id, value: current_user.id %>
-                                    <%= form.hidden_field :target_id, value: user.id %>
+                                    <% unless already_requested%>
+                                        <%= user.name%> 
+                                        <%= form_with url: "friend_requests#create", model: @friend_request, method: :post do |form| %>
 
-                                    <%= form.submit "Become friends!" %>
-                                <% end %> 
+                                                <%= form.hidden_field :requester_id, value: current_user.id %>
+                                                <%= form.hidden_field :target_id, value: user.id %>
+
+                                                <%= form.submit "Become friends!" %>
+                                            <% end %> 
+                                    <%end%>
                         <% end%>
                 <%end%>
         </div>

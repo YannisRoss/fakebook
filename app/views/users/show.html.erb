@@ -20,8 +20,9 @@
 <%= link_to 'Edit your profile', edit_user_registration_url%>
 
 <br>
-<img src="<%=(url_for(@user.avatar))%>" width="200" height="200">
-
+<%if @user.avatar.attached?%>
+    <img src="<%=(url_for(@user.avatar))%>" width="200" height="200">
+<%end%>
 
 
 
