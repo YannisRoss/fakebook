@@ -23,7 +23,12 @@
             <% else%>
                 <%= "Edited by #{post.user.name} at #{post.updated_at}: "%><br>
             <%end%>
-            <%= post.body%> <br>
+
+            <% if post.body.length > 140%>
+                <%= link_to "#{post.body[0..50]}...", "/posts/#{post.id}"%>
+            <%else%>
+            <%= post.body%>
+            <%end%> <br>
             <%= link_to "Comments(#{post.comments.size})", "/posts/#{post.id}" %><br><br>
     <%end%>
 
