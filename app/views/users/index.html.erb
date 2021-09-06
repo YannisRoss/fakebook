@@ -41,7 +41,6 @@
 
         <h3>People you may know:</h3>
             <% @users.each do |user|%>
-            <div>
                 <% unless current_user.friends.include?(user) || current_user.inverse_friends.include?(user)%>
 
                         <% unless user.id == current_user.id%>
@@ -51,7 +50,11 @@
                                         <%already_requested = true%>
                                         <% end%>
                                     <% end %>
-
+                                        <% current_user.friend_requests.each do |request|%>
+                                        <% if request.requester_id == user.id%>
+                                        <%already_requested = true%>
+                                        <% end%>
+                                    <% end %>
                                     <% unless already_requested%>
                                         <%= user.name%> 
                                         <%= form_with url: "friend_requests#create", model: @friend_request, method: :post do |form| %>
@@ -60,12 +63,13 @@
                                                 <%= form.hidden_field :target_id, value: user.id %>
 
                                                 <%= form.submit "Become friends!" %>
+                                                        <br> <br>
+
                                             <% end %> 
                                     <%end%>
                         <% end%>
                 <%end%>
-        </div>
-        <br> <br>
+        
 
     <%end%>
 
