@@ -29,6 +29,9 @@
             <%else%>
             <%= post.body%>
             <%end%> <br>
+            <% #render "likes/form"%>
+            <%= link_to "Like", "/posts/#{post.id}/likes#create", method: :create %> | <%= "#{post.likes.size} likes"%><br><br>
+
             <%= link_to "Comments(#{post.comments.size})", "/posts/#{post.id}" %><br><br>
     <%end%>
 

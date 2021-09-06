@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     def index
         redirect_unregistered
         @post = Post.new
+        @like = Like.new
         @user=current_user
         unless @user.nil?
             @posts_to_show = []
