@@ -18,17 +18,13 @@
 
     <%= render "posts/form"%>
     <% @posts_to_show.each do |post|%>
-        <% unless post.user == current_user %>
             <% if post.updated_at == post.created_at %>
-                <%= "At #{post.updated_at}, #{post.user.name} posted:" %> <br>
+                <%= "Posted by #{post.user.name} at #{post.created_at}: "%><br>
             <% else%>
-                <%="At #{post.updated_at}, #{post.user.name} edited their post:" %> <br>
+                <%= "Edited by #{post.user.name} at #{post.updated_at}: "%><br>
             <%end%>
-        <%else%>
-            posted by <%= post.user.name%> <%= post.created_at%><br>
-        <%end%>
             <%= post.body%> <br>
-            <%= link_to 'Comments', "/posts/#{post.id}" %><br><br>
+            <%= link_to "Comments(#{post.comments.size})", "/posts/#{post.id}" %><br><br>
     <%end%>
 
 
@@ -38,7 +34,8 @@
                 <% unless current_user.friends.include?(user) || current_user.inverse_friends.include?(user)%>
 
                         <% unless user.id == current_user.id%>
-                    <%= user.name%> 
+                        
+                            <%= user.name%> 
                             <%= form_with url: "friend_requests#create", model: @friend_request, method: :post do |form| %>
 
                                     <%= form.hidden_field :requester_id, value: current_user.id %>
