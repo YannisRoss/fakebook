@@ -1,3 +1,5 @@
+
+
 <%= current_user.email%>
 <% if @user.friend_requests.any?%>
     <% @user.friend_requests.each do |request| %>
@@ -13,19 +15,10 @@
     <%end%>
 <%end%>
 
-<h1>Your homepage, <%= @user.name%> </h1>
+<h1>Your profile page, <%= @user.name%> </h1>
 
-<% @user.posts.each do |post|%>
-    <article>
-        <%= post.user.email%><br>
-        <%= post.body%><br>
-        Created at: <%= post.created_at%><br>
-            <%unless post.created_at == post.updated_at%>
-                Edited at: <%= post.updated_at%>
-            <% end %>
-<br><br>
-    </article>
-<% end %>
+<%= link_to 'Edit your profile', edit_user_registration_url%>
+
 
 
 
