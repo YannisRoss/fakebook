@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
     def show
         @friendship = Friendship.new
-        @user=current_user
+        @user=User.find(params[:id])
         redirect_unregistered
     end
 

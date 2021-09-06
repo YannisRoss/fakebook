@@ -15,27 +15,37 @@
     <%end%>
 <%end%>
 
+
+<% if current_user == @user%>
 <h1>Your profile page, <%= @user.name%> </h1>
 
-<%= link_to 'Edit your profile', edit_user_registration_url%>
+    <%= link_to 'Edit your profile', edit_user_registration_url%>
 
+    <%else%>
+    <h1><%= @user.name%>'s Profile </h1>
+
+<% end%>
 <br>
 <%if @user.avatar.attached?%>
     <img src="<%=(url_for(@user.avatar))%>" width="200" height="200">
 <%end%>
 
 
+<% if current_user == @user%>
 
     <h2>Your friends! </h2>
+        <%else%>
+    <h1><%= @user.name%>'s friends </h1>
+<%end%>
         <% @user.friends.each do |friend|%>
         <article>
         <p>
-        <%= friend.name%>
+        <%= link_to "#{friend.name}", "/users/#{friend.id}"%>
         </p>
         <%end%>
          <% @user.inverse_friends.each do |friend|%>
         <article>
         <p>
-        <%= friend.name%>
+        <%= link_to "#{friend.name}", "/users/#{friend.id}"%>
         </p>
         <%end%>
