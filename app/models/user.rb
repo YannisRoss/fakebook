@@ -7,8 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
         has_many :likes, dependent: :destroy
         has_many :posts, dependent: :destroy
-        has_many :comments, through: :posts, dependent: :delete_all
-        has_many :friendships, dependent: :destroy ,dependent: :delete_all
+        has_many :comments, through: :posts, dependent: :destroy
+        has_many :friendships, dependent: :destroy ,dependent: :destroy
         has_many :friends, through: :friendships 
         has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id" , dependent: :delete_all
         has_many :inverse_friends, :through => :inverse_friendships, :source => :user 
