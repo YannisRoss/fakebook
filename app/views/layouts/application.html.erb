@@ -11,13 +11,16 @@
   </head>
 
   <body>
+
+
 <div id="fb-root"></div>
+
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=183944520475010&autoLogAppEvents=1" nonce="TRdq1ght"></script>
 
   <script>
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : ENV['facebook_app_id'],
+        appId      : FACEBOOK_APP_ID,
         cookie     : true,
         xfbml      : true,
         version    : '{v11.0}'
@@ -36,7 +39,7 @@
     }(document, 'script', 'facebook-jssdk'));
 
     
-  </script>
+  </script> 
 
 
         <p class="notice"><%= notice %></p>
@@ -47,7 +50,6 @@
           <%= link_to 'Your profile', "/users/#{current_user.id}" %>
           <%= link_to 'News Feed', root_url %>
         <% else%>
-        <%= button_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
 
        <% end %>
        </nav>
