@@ -11,6 +11,34 @@
   </head>
 
   <body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=183944520475010&autoLogAppEvents=1" nonce="TRdq1ght"></script>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : ENV['facebook_app_id'],
+        cookie     : true,
+        xfbml      : true,
+        version    : '{v11.0}'
+      });
+        
+      FB.AppEvents.logPageView();   
+        
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    
+  </script>
+
+
         <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
        <nav>
