@@ -28,6 +28,12 @@ gem 'jbuilder', '~> 2.7'
 #devise
 gem 'devise'
 
+#omniauth 
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
+
+
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
