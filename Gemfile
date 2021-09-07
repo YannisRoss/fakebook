@@ -32,6 +32,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 
+gem "figaro"
 
 
 # Reduces boot times through caching; required in config/boot.rb
