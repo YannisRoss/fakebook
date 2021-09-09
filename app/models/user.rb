@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
         has_one_attached :avatar
 
-        after_create :send_welcome_mail
+        after_create :send_welcome_email
 
     
         def send_welcome_email(current_user)
