@@ -47,12 +47,7 @@ class UsersController < ApplicationController
         @user=current_user
     end
 
-    after_create :send_welcome_mail
 
-    
-    def send_welcome_email(current_user)
-      UserMailer.send_signup_email(current_user).deliver_later
-    end
 
 
     def update
