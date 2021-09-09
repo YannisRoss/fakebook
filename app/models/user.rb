@@ -21,8 +21,8 @@ class User < ApplicationRecord
         after_create :send_welcome_email
 
     
-        def send_welcome_email(current_user)
-          UserMailer.send_signup_email(current_user).deliver_later
+        def send_welcome_email(@user)
+          UserMailer.send_signup_email(@user).deliver_later
         end
 
 
