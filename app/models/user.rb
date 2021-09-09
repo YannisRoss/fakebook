@@ -18,6 +18,14 @@ class User < ApplicationRecord
 
         has_one_attached :avatar
 
+        after_create :send_welcome_mail
+
+    
+        def send_welcome_email(current_user)
+          UserMailer.send_signup_email(current_user).deliver_later
+        end
+
+
         def self.from_omniauth(auth)
           where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
             user.email = auth.info.email
