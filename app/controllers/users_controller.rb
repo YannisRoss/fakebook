@@ -41,12 +41,18 @@ class UsersController < ApplicationController
 
     end
 
+    
+
     def edit
         @user=current_user
     end
 
+
+
+
     def update
         if @user.update(user_params)
+
             format.html { redirect_to @user, notice: "user was successfully updated." }
             format.json { render :show, status: :ok, location: @user }
           else

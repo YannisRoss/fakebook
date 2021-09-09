@@ -1,4 +1,6 @@
+
 <% unless current_user%>
+
     <h1>Welcome to FakeBook!</h1>
 
     <h2>Featuring over <%= @users.size - 1 %> users worldwide! </h2>
@@ -8,6 +10,7 @@
             <%= link_to 'Sign in', new_user_session_url %>
 
 <% else %>
+
 <h6>Featuring over <%= @users.size - 1 %> users worldwide! </h6>
 <% if current_user.friend_requests.any?%>
     You have incoming friend requests.
