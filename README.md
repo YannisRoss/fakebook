@@ -2,7 +2,7 @@
 
 A project that aims to mimic Facebook-like functionality.
 
-  Part of TheOdinProject's curriculum. Relevant lesson: https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/rails-final-project
+  Part of TheOdinProject's curriculum. Relevant lesson [here](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/rails-final-project)
 
 Deployed [here on Heroku](https://whispering-shelf-89077.herokuapp.com/) as of September 9th, 2021.
 
