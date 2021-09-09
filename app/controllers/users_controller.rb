@@ -49,7 +49,6 @@ class UsersController < ApplicationController
 
     def update
         if @user.update(user_params)
-            UserNotifierMailer.send_data_email(@user).deliver
 
             format.html { redirect_to @user, notice: "user was successfully updated." }
             format.json { render :show, status: :ok, location: @user }
