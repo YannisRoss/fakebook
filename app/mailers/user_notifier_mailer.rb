@@ -5,7 +5,7 @@ class UserNotifierMailer < ApplicationMailer
     def send_signup_email(user)
       @user = user
       mail( :to => @user.email,
-      :subject => 'Thanks for signing up for our amazing app' )
+      :subject => 'Thanks for signing up for my social clone app' )
     end
 
 
@@ -14,5 +14,7 @@ class UserNotifierMailer < ApplicationMailer
       mail( :to => @user.email,
         :subject => 'Your data' )
     end
+
+    
 end
   
