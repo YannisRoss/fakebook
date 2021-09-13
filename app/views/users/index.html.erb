@@ -64,7 +64,7 @@
                                                 <%= form.hidden_field :requester_id, value: current_user.id %>
                                                 <%= form.hidden_field :target_id, value: user.id %>
 
-                                                <%= form.submit "Become friends!" %>
+                                                <%= form.submit "Become friends!", class: 'friend-request-button' %>
                                                         <br> <br>
 
                                             <% end %> 
